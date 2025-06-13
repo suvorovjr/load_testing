@@ -17,11 +17,8 @@ services:
       dockerfile: Dockerfile
     container_name: nginx
     restart: unless-stopped
-    ports:
-      - 80:80
+    network_mode: host
     depends_on:
-      - ping
-    networks:
       - ping
 
 networks:
