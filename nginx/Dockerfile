@@ -1,5 +1,6 @@
-FROM --platform=linux/amd64 nginx:1.25
+FROM nginx:mainline-alpine
 
 COPY ./conf /etc/nginx/conf.d
+COPY ./nginx.conf /etc/nginx/nginx.conf
 
 WORKDIR /app
