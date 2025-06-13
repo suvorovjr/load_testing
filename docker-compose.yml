@@ -1,0 +1,29 @@
+services:
+  ping:
+    build:
+      context: ./ping
+      dockerfile: Dockerfile
+    container_name: ping
+    restart: unless-stopped
+    ports:
+      - 8000:8000
+    command: ["/web/entrypoint.sh"]
+    networks:
+      - ping
+
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    container_name: nginx
+    restart: unless-stopped
+    ports:
+      - 80:80
+    depends_on:
+      - ping
+    networks:
+      - ping
+
+networks:
+  ping:
+    driver: bridge
